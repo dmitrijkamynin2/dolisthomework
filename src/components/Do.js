@@ -1,11 +1,10 @@
 import React from "react";
 import "../style/style.css";
 
-function Do(e) {
-    const text = e;
+function Do({task}) {
     return(
-        <div className="form">
-            <p>{text}</p>
+        <div className="form" id={task.id}>
+            <p>{task.title}</p>
         </div>
     )
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Head from './components/Head.js';
+import App from './App.js';
 
 ReactDOM.render(
-  <Head/>,    
+  <App/>,    
   document.getElementById('root')
 );

@@ -1,24 +1,27 @@
 import React, {useState} from "react";
 import App from '../App.js'
+import DoList from "../DoList.js";
 
-function Head() {
+function Head({addDo}) {
     const [count, setCount] = useState('');
+    const [id, setId] = useState(1);
 
-    function intValue(e) {
+    function editChange(e) {
         setCount(e.currentTarget.value);
     }
 
     function chekEnter(e) {
         if (e.key == 'Enter') {
             alert(count);
-            App(count);
-            e.currentTarget.value = "";
+            addDo({count, id});
+            e.currentTarget.value = '';
+            setId(id + 1);
         }
     }
 
     return(
         <div>
-            <input value={count} onChange={intValue} onKeyUp={chekEnter}></input>
+            <input onChange={editChange} onKeyUp={chekEnter}/>
         </div>
     )
 }
