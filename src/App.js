@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import ReactDom from 'react-dom';
 import Head from './components/Head.js'
 import DoList from './DoList.js';
+import './style/App.css'
 
 function App() {
   
@@ -20,7 +21,9 @@ function App() {
   return (
           <div>
             <Head addDo={addDo}/>
-            <DoList tasks={tasks} delDo={delDo}/>
+            <div className='content'>
+              <DoList tasks={tasks} delDo={delDo}/>
+            </div>
           </div>
           )
 }

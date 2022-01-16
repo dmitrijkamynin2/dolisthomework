@@ -1,11 +1,13 @@
 import React from "react";
-import "../style/style.css";
+import "../style/App.css";
 
 function Do({task, delDo}) {
     return(
-        <div className="form">
-            <p>{task.title}</p>
-            <input type="button" onClick={delDo}  id={task.id}></input>
+        <div className="do">
+            <input type="checkbox" className="coldo col1"/>
+            <p className="coldo col2">{task.title}</p>
+            <p className="coldo col3">12/01/2022</p>
+            <input className="coldo col4" type="button" value='del' onClick={delDo} id={task.id}/>
         </div>
     )
 }
