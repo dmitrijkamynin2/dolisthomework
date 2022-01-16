@@ -12,9 +12,9 @@ function Head({addDo}) {
 
     function chekEnter(e) {
         if (e.key == 'Enter') {
-            alert(count);
             addDo({count, id});
             e.currentTarget.value = '';
+            setCount('');
             setId(id + 1);
         }
     }

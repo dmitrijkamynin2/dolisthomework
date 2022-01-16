@@ -8,14 +8,19 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   function addDo({count, id}){
-     setTasks(tasks.concat({title: count, id: id}));
+     setTasks([{title: count, id: id}].concat(tasks));
+  }
+
+  function delDo(e) {
+    let taskNew = tasks.filter((item) => item.id != e.currentTarget.id);
+    setTasks(taskNew);
   }
 
 
   return (
           <div>
             <Head addDo={addDo}/>
-            <DoList tasks={tasks}/>
+            <DoList tasks={tasks} delDo={delDo}/>
           </div>
           )
 }

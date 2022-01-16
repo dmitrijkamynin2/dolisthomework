@@ -1,10 +1,10 @@
 import { useState } from 'react/cjs/react.development'
 import Do from './components/Do.js'
 
-function DoList({tasks}) {
+function DoList({tasks, delDo}) {
            return (
         <div>
-            {tasks.map((task) => <Do task={task}/>)}
+            {tasks.map((task) => <Do task={task} delDo={delDo}/>)}
         </div>
     )
 }
