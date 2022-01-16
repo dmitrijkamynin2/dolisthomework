@@ -5,9 +5,7 @@ import DoList from './DoList.js';
 
 function App() {
   
-  const [tasks, setTasks] = useState([
-    
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   function addDo({count, id}){
      setTasks(tasks.concat({title: count, id: id}));
