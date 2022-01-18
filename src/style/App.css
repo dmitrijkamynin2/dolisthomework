@@ -101,6 +101,9 @@ input {
 }
 
 .coldo.col2{
+    text-align: left;
+    background: transparent;
+    border: none;
     width: 66%;
 }
 

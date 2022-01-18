@@ -98,11 +98,15 @@ function App() {
     if (see == 'All') {sortDoDown()};
   }, [see]);
 
+  function saveEdit(edit, id) {
+    tasks.map((item) => {if (+item.id == +id){item.title = edit}});
+  }
+  
   return (
           <div>
             <Head addDo={addDo} sortDoUp={sortDoUp} sortDoDown={sortDoDown} seeDone={seeDone} seeUndone={seeUndone} seeAll={seeAll}/>
             <div className='content'>
-              <DoList tasks={tasks} delDo={delDo} checkStateChekbox={checkStateChekbox}/>
+              <DoList tasks={tasks} delDo={delDo} checkStateChekbox={checkStateChekbox} saveEdit={saveEdit}/>
             </div>
           </div>
           )
