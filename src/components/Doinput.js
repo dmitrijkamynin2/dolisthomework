@@ -2,11 +2,19 @@ import React, { useEffect } from "react";
 import { useState } from "react/cjs/react.development";
 import "../style/App.css";
 
-function Doinput() {
+function Doinput({checkFocusTask, exitEdit}) {
     
+    function unFocus() {
+        exitEdit();
+    }
+    
+    if (checkFocusTask) {
     return(
-        <input></input>
+        <input onBlur={unFocus}></input>
     )
+    } else {
+        return null
+    }
 }
 
 export default Doinput
