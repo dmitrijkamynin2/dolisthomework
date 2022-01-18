@@ -4,9 +4,11 @@
 
 .head-container {  
     width: 42.349%;
-    max-width: 980px;
     margin: 0 auto;
+    max-width: 980px;
+    max-height: 400px;
     min-width: 700px;
+    min-height: 100px;
 }
   
 .head {
@@ -24,6 +26,8 @@
     margin-left: 2.8571429%;
     width: 11.4285714%;
     height: 5vh;
+    min-height: 50px;
+    max-height: 50px;
 }
 
 .col.span1 {
@@ -62,7 +66,7 @@ img {
 }
 
 input {
-    font-size: 1.75vh;
+    font-size: 120%;
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: center;
     background-color: white;
@@ -72,14 +76,14 @@ input {
 .content {
     display: flex;
     flex-direction: column;
-    margin: 3vw auto;
+    margin: 1px auto;
     width: 50%;
     min-width: 700px;
-
+    min-height: 400px;
 }
 
 .do {
-    margin-top: 1vh;
+    margin: 10px auto;
     border: solid 1px black;
     flex: 5vw;
     background-color: white;
@@ -88,11 +92,17 @@ input {
     display: flex;
     flex-direction: row;
     height: 8vh;
+    min-height: 75px;
+    max-width: 950px;
+    max-height: 100px;
 }
 
 .coldo {
     margin: auto 0 auto 2%;
-    font-size: 2vh;
+    font-size: 100%;
+    min-height: 10px;
+    max-height: 50px;
+    font-size: 120%;
 }
 
 .coldo.col1{
@@ -115,3 +125,12 @@ input {
     width: 6%;
     background-color: #e03838;
 }   
+
+.mybody{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(../image/background.jpg);
+}

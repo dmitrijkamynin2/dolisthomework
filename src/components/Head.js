@@ -3,7 +3,7 @@ import '../style/App.css'
 import ToDo from '../image/to-do.jpg'
 import Sort from '../image/sort.jpg'
 
-function Head({addDo, sortDoUp, sortDoDown, seeDone, seeUndone, seeAll, activeSee}) {
+function Head({addDo, sortDoUp, sortDoDown, seeDone, seeUndone, seeAll, activeSee, activeSort}) {
     const [count, setCount] = useState('');
     const [id, setId] = useState(1);
 
@@ -37,8 +37,8 @@ function Head({addDo, sortDoUp, sortDoDown, seeDone, seeUndone, seeAll, activeSe
                         <input className="col" type="button" value="Undone" style={activeSee[2]} onClick={seeUndone}/>
                         <div className="col"></div>
                         <img src={Sort} alt="Sort" className="col span2"/>
-                        <input className="col span5" type="button" value="new" onClick={sortDoDown}/>
-                        <input className="col span5" type="button" value="old" onClick={sortDoUp}/>
+                        <input className="col span5" type="button" value="new" style={activeSort[0]} onClick={sortDoDown}/>
+                        <input className="col span5" type="button" value="old" style={activeSort[1]} onClick={sortDoUp}/>
                     </div>
                 </div>
             </div>

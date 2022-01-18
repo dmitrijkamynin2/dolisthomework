@@ -13,6 +13,7 @@ function App() {
   //by re-render
   const [state, setState] = useState(false);
 
+  //Del and add
   function addDo({count, id}){
      setTasks([{title: count, id: id, checked: false}].concat(tasks));
   }
@@ -22,20 +23,41 @@ function App() {
     setTasks(taskNew);
   }
   
+  //Sort
+  const defoultActiveSort = [
+    {backgroundColor: 'rgb(64, 199, 82)'},
+    {backgroundColor: 'white'},
+  ]
+  const [activeSort, setActiveSort] = useState(defoultActiveSort);
+  const [activeSortForAll, setActiveSortForAll] = useState(true);
+
   function sortDoUp() {
+    if (activeSortForAll) {
     setTasks(tasks.sort((a, b) => {
       return a.id - b.id;
     }));
     setState(!state);
+    let newActiveSort = activeSort;
+    setActiveSort(newActiveSort.reverse());
+    setActiveSortForAll(!activeSortForAll);
+    }
   }
 
   function sortDoDown() {
+    if (!activeSortForAll) {
     setTasks(tasks.sort((a, b) => {
       return b.id - a.id
     }));
     setState(!state);
+    let newActiveSort = activeSort;
+    setActiveSort(newActiveSort.reverse());
+    setActiveSortForAll(!activeSortForAll);
+    }
   }
 
+
+
+  //check Checkbox
   function checkStateChekbox(e) {
     const i = tasks.findIndex((item) => {return +item.id == +e.currentTarget.id});
     const newTask = tasks;
@@ -44,6 +66,7 @@ function App() {
     setState(!state);
   }
 
+  //All, done and undone
   const [see, setSee] = useState('All');
 
   function seeDone() {
@@ -101,7 +124,15 @@ function App() {
 
   useEffect(() => {
     if (see == 'All') {
-      sortDoDown();
+      if (activeSortForAll) {
+        setTasks(tasks.sort((a, b) => {
+          return b.id - a.id
+        }));
+      } else {
+        setTasks(tasks.sort((a, b) => {
+          return a.id - b.id 
+        }));
+      }
       let newActive = colorActiveDefoult;
       newActive.splice(0, 1, {backgroundColor: 'rgb(64, 199, 82)'}); 
       setActiveSee(newActive);
@@ -117,15 +148,14 @@ function App() {
     }
   }, [see]);
 
-
-
+  //Edit tasks
   function saveEdit(edit, id) {
     tasks.map((item) => {if (+item.id == +id){item.title = edit}});
   }
   
   return (
-          <div>
-            <Head addDo={addDo} sortDoUp={sortDoUp} sortDoDown={sortDoDown} seeDone={seeDone} seeUndone={seeUndone} seeAll={seeAll} activeSee={activeSee}/>
+          <div className='mybody'>
+            <Head addDo={addDo} sortDoUp={sortDoUp} sortDoDown={sortDoDown} seeDone={seeDone} seeUndone={seeUndone} seeAll={seeAll} activeSee={activeSee} activeSort={activeSort}/>
             <div className='content'>
               <DoList tasks={tasks} delDo={delDo} checkStateChekbox={checkStateChekbox} saveEdit={saveEdit}/>
             </div>
