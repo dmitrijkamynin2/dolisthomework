@@ -3,7 +3,7 @@ import '../style/App.css'
 import ToDo from '../image/to-do.jpg'
 import Sort from '../image/sort.jpg'
 
-function Head({addDo, sortDoUp, sortDoDown, seeDone, seeUndone, seeAll}) {
+function Head({addDo, sortDoUp, sortDoDown, seeDone, seeUndone, seeAll, activeSee}) {
     const [count, setCount] = useState('');
     const [id, setId] = useState(1);
 
@@ -32,9 +32,9 @@ function Head({addDo, sortDoUp, sortDoDown, seeDone, seeUndone, seeAll}) {
                         <input className="col span1" type="text" onChange={editChange} onKeyUp={chekEnter}/>
                     </div>
                     <div className="row">
-                        <input  className="col" type="button" value="All" onClick={seeAll}/>
-                        <input  className="col" type="button" value="Done" onClick={seeDone}/>
-                        <input className="col" type="button" value="Undone" onClick={seeUndone}/>
+                        <input  className="col" type="button" value="All" style={activeSee[0]} onClick={seeAll}/>
+                        <input  className="col" type="button" value="Done" style={activeSee[1]} onClick={seeDone}/>
+                        <input className="col" type="button" value="Undone" style={activeSee[2]} onClick={seeUndone}/>
                         <div className="col"></div>
                         <img src={Sort} alt="Sort" className="col span2"/>
                         <input className="col span5" type="button" value="new" onClick={sortDoDown}/>

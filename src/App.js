@@ -47,34 +47,32 @@ function App() {
   const [see, setSee] = useState('All');
 
   function seeDone() {
-  switch (see) {
-    case 'All':
-      setSee('Done');
-      const thisTask = tasks.filter(item => item.checked == true);
-      setTasks(thisTask);
-      const anotherTask = tasks.filter(item => item.checked == false);
-      setSecondTasks(anotherTask);
-      break;
-    case 'Undone':
-      setSee('Done');
-      const thisTaskDone = secondTasks;
-      const anotherTaskDone = tasks;
-      setTasks(thisTaskDone);
-      setSecondTasks(anotherTaskDone);
-      break;
+    setSee('Done');
+    switch (see) {
+      case 'All':
+        const thisTask = tasks.filter(item => item.checked == true);
+        setTasks(thisTask);
+        const anotherTask = tasks.filter(item => item.checked == false);
+        setSecondTasks(anotherTask);
+        break;
+      case 'Undone':
+        const thisTaskDone = secondTasks;
+        const anotherTaskDone = tasks;
+        setTasks(thisTaskDone);
+        setSecondTasks(anotherTaskDone);
+        break;
   }};
 
   function seeUndone() {
+    setSee('Undone');
     switch (see) {
       case 'All':
-        setSee('Undone');
         const thisTask = tasks.filter(item => item.checked == false);
         setTasks(thisTask);
         const anotherTask = tasks.filter(item => item.checked == true);
         setSecondTasks(anotherTask);
         break;
       case 'Done':
-        setSee('Undone');
         const thisTaskUndone = secondTasks;
         const anotherTaskUndone = tasks;
         setTasks(thisTaskUndone);
@@ -83,20 +81,43 @@ function App() {
   }}
 
   function seeAll() {
+    setSee('All');
     switch (see) {
       case 'Done':
-        setSee('All');
         setTasks(tasks.concat(secondTasks));
         break;
       case 'Undone':
-        setSee('All');
         setTasks(tasks.concat(secondTasks));
         break;}
   }
 
+  const colorActiveDefoult = [
+    {backgroundColor: 'white'},
+    {backgroundColor: 'white'},
+    {backgroundColor: 'white'},
+  ];
+
+  const [activeSee, setActiveSee] = useState(colorActiveDefoult);
+
   useEffect(() => {
-    if (see == 'All') {sortDoDown()};
+    if (see == 'All') {
+      sortDoDown();
+      let newActive = colorActiveDefoult;
+      newActive.splice(0, 1, {backgroundColor: 'rgb(64, 199, 82)'}); 
+      setActiveSee(newActive);
+      console.log(activeSee);
+    } else if (see == 'Done') {
+      let newActive = colorActiveDefoult;
+      newActive.splice(1, 1, {backgroundColor: 'rgb(64, 199, 82)'}); 
+      setActiveSee(newActive);
+    } else {
+      let newActive = colorActiveDefoult;
+      newActive.splice(2, 1, {backgroundColor: 'rgb(64, 199, 82)'}); 
+      setActiveSee(newActive);
+    }
   }, [see]);
+
+
 
   function saveEdit(edit, id) {
     tasks.map((item) => {if (+item.id == +id){item.title = edit}});
@@ -104,7 +125,7 @@ function App() {
   
   return (
           <div>
-            <Head addDo={addDo} sortDoUp={sortDoUp} sortDoDown={sortDoDown} seeDone={seeDone} seeUndone={seeUndone} seeAll={seeAll}/>
+            <Head addDo={addDo} sortDoUp={sortDoUp} sortDoDown={sortDoDown} seeDone={seeDone} seeUndone={seeUndone} seeAll={seeAll} activeSee={activeSee}/>
             <div className='content'>
               <DoList tasks={tasks} delDo={delDo} checkStateChekbox={checkStateChekbox} saveEdit={saveEdit}/>
             </div>
