@@ -148,16 +148,11 @@ function App() {
     }
   }, [see]);
 
-  //Edit tasks
-  function saveEdit(edit, id) {
-    tasks.map((item) => {if (+item.id == +id){item.title = edit}});
-  }
-  
   return (
           <div className='mybody'>
             <Head addDo={addDo} sortDoUp={sortDoUp} sortDoDown={sortDoDown} seeDone={seeDone} seeUndone={seeUndone} seeAll={seeAll} activeSee={activeSee} activeSort={activeSort}/>
             <div className='content'>
-              <DoList tasks={tasks} delDo={delDo} checkStateChekbox={checkStateChekbox} saveEdit={saveEdit}/>
+              <DoList tasks={tasks} delDo={delDo} checkStateChekbox={checkStateChekbox}/>
             </div>
           </div>
           )
