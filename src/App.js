@@ -148,11 +148,16 @@ function App() {
     }
   }, [see]);
 
+  //Edit task
+  function editTask(value, id) {
+    tasks.map((item) => {if (item.id == id){item.title = value}});
+  }
+
   return (
           <div className='mybody'>
             <Head addDo={addDo} sortDoUp={sortDoUp} sortDoDown={sortDoDown} seeDone={seeDone} seeUndone={seeUndone} seeAll={seeAll} activeSee={activeSee} activeSort={activeSort}/>
             <div className='content'>
-              <DoList tasks={tasks} delDo={delDo} checkStateChekbox={checkStateChekbox}/>
+              <DoList tasks={tasks} delDo={delDo} checkStateChekbox={checkStateChekbox} editTask={editTask}/>
             </div>
           </div>
           )
