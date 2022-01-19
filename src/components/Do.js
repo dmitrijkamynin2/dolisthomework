@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "../style/App.css";
+import styles from "../style/App.module.css"
 
-function Do({task, delDo, checkStateChekbox, editTask}) {
+function Do({task, delDo, checkStateChekbox}) {
 
     const [checkFocusTask, setCheckFocusTask] = useState(true)
     
@@ -22,7 +22,6 @@ function Do({task, delDo, checkStateChekbox, editTask}) {
             unFocusTask();
         } else if (e.key == 'Enter') {
             task.title = refInput.current.value;
-            editTask();
             unFocusTask();
         }
     }
@@ -30,12 +29,12 @@ function Do({task, delDo, checkStateChekbox, editTask}) {
     useEffect(() => {if (checkFocusTask == false) {refInput.current.focus()}},[checkFocusTask])
 
     return(
-        <div className="do">
-            <input type="checkbox" className="coldo col1" onChange={checkStateChekbox} checked={task.checked} id={task.id}/>
+        <div className={styles.do}>
+            <input type="checkbox" className={styles.coldoCol1} onChange={checkStateChekbox} checked={task.checked} id={task.id}/>
             {
             checkFocusTask?
                 <p 
-                    className="coldo col2" 
+                    className={styles.coldoCol2} 
                     onMouseDown={focusTask}>
                         {task.title}
                 </p>:
@@ -43,13 +42,13 @@ function Do({task, delDo, checkStateChekbox, editTask}) {
                     ref={refInput} 
                     onBlur={unFocusTask} 
                     onKeyUp={chekEnterOrEsc} 
-                    className="coldo col2" 
+                    className={styles.coldoCol2} 
                     defaultValue={task.title} 
                     id={task.id}>
                 </input>
             }
-            <p className="coldo col3">12/01/2022</p>
-            <input className="coldo col4" type="button" value='del' onClick={delDo} id={task.id}/>
+            <p className={styles.coldoCol3}>12/01/2022</p>
+            <input className={styles.coldoCol4} type="button" value='del' onClick={delDo} id={task.id}/>
         </div>
     )
 }

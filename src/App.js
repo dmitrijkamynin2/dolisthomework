@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import ReactDom from 'react-dom';
+import React, {useEffect, useState} from 'react'
 import Head from './components/Head.js'
-import DoList from './DoList.js';
-import './style/App.css'
+import DoList from './DoList.js'
+import styles from './style/App.module.css'
+import Paging from './components/Paging.js'
+
 
 function App() {
   
@@ -148,20 +149,16 @@ function App() {
     }
   }, [see]);
 
-  //Edit task
-  function editTask(value, id) {
-  //   setTasks(tasks.map((item) => {if (item.id == id){item.title = value}}));
-  //   setState(!state);
-    console.log(tasks);
-    // const editTask = tasks.filter((item) => item.id == id);
-    // const newTasks = tasks;
-    // newTasks.splice(editTask.id - 1, 1, editTask);
-    // console.log(newTasks);
+  //Paging
 
+  const [selectPage, setSelectPage] = useState(1);
+
+  function checkPage(e) {
+    setSelectPage(e.currentTarget.value);
   }
 
   return (
-          <div className='mybody'>
+          <div className={styles.mybody}>
             <Head 
               addDo={addDo} 
               sortDoUp={sortDoUp} 
@@ -171,15 +168,21 @@ function App() {
               seeAll={seeAll} 
               activeSee={activeSee} 
               activeSort={activeSort}/>
-            <div className='content'>
+            <div className={styles.content}>
               <DoList 
-                tasks={tasks} 
+                tasks={tasks}
                 delDo={delDo} 
-                checkStateChekbox={checkStateChekbox} 
-                editTask={editTask}/>
+                checkStateChekbox={checkStateChekbox}
+                selectPage={selectPage}/>
+                {(tasks.length > 5)?
+                  <Paging 
+                    tasks={tasks} 
+                    checkPage={checkPage}
+                    selectPage={selectPage}/>
+                  :null}
             </div>
           </div>
-          )
+        )
 }
 
 export default App;
