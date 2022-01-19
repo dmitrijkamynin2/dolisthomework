@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import React, { useEffect, useState } from "react";
 import "../style/App.css";
 
 function Do({task, delDo, checkStateChekbox, editTask}) {
@@ -22,7 +21,8 @@ function Do({task, delDo, checkStateChekbox, editTask}) {
         if (e.key == 'Escape') {
             unFocusTask();
         } else if (e.key == 'Enter') {
-            editTask(refInput.current.value, refInput.current.id);
+            task.title = refInput.current.value;
+            editTask();
             unFocusTask();
         }
     }
@@ -34,8 +34,19 @@ function Do({task, delDo, checkStateChekbox, editTask}) {
             <input type="checkbox" className="coldo col1" onChange={checkStateChekbox} checked={task.checked} id={task.id}/>
             {
             checkFocusTask?
-                <p className="coldo col2" onMouseDown={focusTask}>{task.title}</p>:
-                <input ref={refInput} onBlur={unFocusTask} onKeyUp={chekEnterOrEsc} className="coldo col2" defaultValue={task.title} id={task.id}></input>
+                <p 
+                    className="coldo col2" 
+                    onMouseDown={focusTask}>
+                        {task.title}
+                </p>:
+                <input 
+                    ref={refInput} 
+                    onBlur={unFocusTask} 
+                    onKeyUp={chekEnterOrEsc} 
+                    className="coldo col2" 
+                    defaultValue={task.title} 
+                    id={task.id}>
+                </input>
             }
             <p className="coldo col3">12/01/2022</p>
             <input className="coldo col4" type="button" value='del' onClick={delDo} id={task.id}/>

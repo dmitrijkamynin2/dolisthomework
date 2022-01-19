@@ -150,14 +150,33 @@ function App() {
 
   //Edit task
   function editTask(value, id) {
-    tasks.map((item) => {if (item.id == id){item.title = value}});
+  //   setTasks(tasks.map((item) => {if (item.id == id){item.title = value}}));
+  //   setState(!state);
+    console.log(tasks);
+    // const editTask = tasks.filter((item) => item.id == id);
+    // const newTasks = tasks;
+    // newTasks.splice(editTask.id - 1, 1, editTask);
+    // console.log(newTasks);
+
   }
 
   return (
           <div className='mybody'>
-            <Head addDo={addDo} sortDoUp={sortDoUp} sortDoDown={sortDoDown} seeDone={seeDone} seeUndone={seeUndone} seeAll={seeAll} activeSee={activeSee} activeSort={activeSort}/>
+            <Head 
+              addDo={addDo} 
+              sortDoUp={sortDoUp} 
+              sortDoDown={sortDoDown} 
+              seeDone={seeDone} 
+              seeUndone={seeUndone} 
+              seeAll={seeAll} 
+              activeSee={activeSee} 
+              activeSort={activeSort}/>
             <div className='content'>
-              <DoList tasks={tasks} delDo={delDo} checkStateChekbox={checkStateChekbox} editTask={editTask}/>
+              <DoList 
+                tasks={tasks} 
+                delDo={delDo} 
+                checkStateChekbox={checkStateChekbox} 
+                editTask={editTask}/>
             </div>
           </div>
           )
